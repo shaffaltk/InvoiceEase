@@ -1,0 +1,52 @@
+﻿@page
+@model BillingSystem.Pages.IndexModel
+@{
+    ViewData["Title"] = "License Index";
+}
+
+<h2>License Index</h2>
+
+<a asp-page="AddLicense" class="btn btn-primary">Add New License</a>
+<a asp-page="/Billing" class="btn btn-primary">generate bill</a>
+
+<table class="table table-bordered" style="border-collapse: collapse; width: 100%;">
+    <thead>
+        <tr>
+            <th>LicenseId</th>
+            <th>License Key</th>
+            <th>Start Date</th>
+            <th>Expire Date</th>
+            <th>License Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var license in Model.ScreenLicenses)
+        {
+            <tr>
+                <td>@license.ScreenLicenseId</td>
+                <td>@license.LicenseKey</td>
+                <td>@license.StartDate.ToShortDateString()</td>
+                <td>@license.ExpireDate.ToShortDateString()</td>
+                <td>@license.LicenseType?.Type</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<table class="table table-bordered" style="border-collapse: collapse; width: 100%; margin-top: 20px;">
+    <thead>
+        <tr> <th>LicenseTypeId</th>
+        <th>LicenseType</th>
+        <th>MonthlyCost</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var licensetype in Model.LicenseTypes)
+        {
+            <tr>
+                <td>@licensetype.LicenseTypeId</td>
+                <td>@licensetype.Type</td>
+                <td>@licensetype.MonthlyCost</td>
+            </tr>
+        }
+    </tbody>
+</table>

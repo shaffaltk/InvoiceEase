@@ -1,0 +1,34 @@
+@page
+@model BillingSystem.Pages.BillingModel
+
+@{
+    ViewData["Title"] = "Billing";
+}
+
+<h1>Billing</h1>
+
+<table class="table" border='3' cellpadding="10">
+    <thead>
+        <tr>
+            <th>Screen License Id</th>
+            <th>Month/Year</th>
+            <th>Amount</th>
+            <th>Billed Date</th>
+            <th>Payment Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var billing in Model.Billings)
+        {
+            <tr>
+                <td>@billing.ScreenLicenseId</td>
+                <td>@billing.MonthYear</td>
+                <td>@billing.Amount.ToString("C")</td>
+                <td>@billing.BilledDate.ToString("d")</td>
+                <td>
+                    <input type="checkbox" @(billing.PaymentStatus ? "checked" : "")/>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
